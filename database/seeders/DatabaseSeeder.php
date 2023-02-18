@@ -15,27 +15,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \DB::table('users')->insert([
-            'username' => 'administrator',
-            'email' => 'admin@dost.com',
-            'password' => bcrypt('dost9ict'),
-            'role' => 'Super Administrator',
+            'name' => 'Ra-ouf Jumli',
+            'email' => 'admin@krad.com',
+            'password' => bcrypt('123456789'),
+            'mobile' => '0917153652',
+            'is_admin' => 1,
             'is_active' => 1,
             'created_at' => now(),
             'updated_at' => now(),
             'email_verified_at' => now(),
         ]);
 
-        \DB::table('user_profiles')->insert([
-            'firstname' => 'Ra-ouf',
-            'lastname' => 'Jumli',
-            'middlename' => 'Indanan',
-            'gender' => 'Male',
-            'birthday' => '1994-03-11',
-            'user_id' => 1,
-            'mobile' => '09557650801',
-            'address' => 'n/a',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
     }
 }

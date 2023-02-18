@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->smallIncrements('id');
-            $table->string('username',30)->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('name',150);
+            $table->string('mobile',15);
             $table->string('avatar',200)->default('avatar.jpg');
-            $table->string('role',50);
+            $table->boolean('is_admin')->default(0);
             $table->boolean('is_active')->default(0);
             $table->timestamp('welcome_valid_until')->nullable();
             $table->rememberToken();

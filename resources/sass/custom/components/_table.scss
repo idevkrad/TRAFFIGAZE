@@ -1,0 +1,40 @@
+// 
+// _table.scss
+// 
+.table {
+    th {
+        font-weight: $font-weight-bold;
+    }
+    .table-light {
+        color: $body-color;
+        border-color: $table-border-color;
+        background-color: $table-head-bg;
+    }
+    .thead-light {
+        color: #495057;
+        background-color: #f8f9fa;
+        border-color: #eff2f7;
+    }
+    thead {
+        border-top: 1px solid #eff2f7;
+    }
+}
+
+.table-bordered {
+    border: $table-border-width solid $table-border-color;
+    th,
+    td {
+        border: $table-border-width solid $table-border-color;
+    }
+}
+
+.table-dark>:not(:last-child)>:last-child>* {
+    border-bottom-color: $table-dark-border-color;
+}
+
+.table-nowrap {
+    th,
+    td {
+        white-space: nowrap;
+    }
+}

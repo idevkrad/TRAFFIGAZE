@@ -12,7 +12,7 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'email' => $this->email,
-            'avatar' => 'http://traffigaze.local/images/avatars/'.$this->avatar,
+            'avatar' => 'https://traffigaze.rjumli.me/images/avatars/'.$this->avatar,
             'role' => ($this->is_admin) ? 'Administrator' : 'User',
             'is_active' => $this->is_active,
             'name' => $this->name,

@@ -18,7 +18,7 @@ export default {
 
     methods : {
         listenForNewEvent(){
-            Echo.join('presence-posts')
+            Echo.join('posts')
                 .listen('PostBroadcast', (data) => {
                     console.log(data.event);
                 });

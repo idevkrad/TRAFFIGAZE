@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3baed45734c3379a655b682150f8d3da",
+    "content-hash": "d93208c396cc49cab7fb8460cfa34702",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -3870,16 +3870,16 @@
         },
         {
             "name": "pusher/pusher-php-server",
-            "version": "7.0.0",
+            "version": "7.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pusher/pusher-http-php.git",
-                "reference": "a9a7f739a2a03e3fef33633499ba586cabd57686"
+                "reference": "4ace4873873b06c25cecb2dd6d9fdcbf2f20b640"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/a9a7f739a2a03e3fef33633499ba586cabd57686",
-                "reference": "a9a7f739a2a03e3fef33633499ba586cabd57686",
+                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/4ace4873873b06c25cecb2dd6d9fdcbf2f20b640",
+                "reference": "4ace4873873b06c25cecb2dd6d9fdcbf2f20b640",
                 "shasum": ""
             },
             "require": {
@@ -3888,11 +3888,11 @@
                 "guzzlehttp/guzzle": "^7.2",
                 "paragonie/sodium_compat": "^1.6",
                 "php": "^7.3|^8.0",
-                "psr/log": "^1.0"
+                "psr/log": "^1.0|^2.0|^3.0"
             },
             "require-dev": {
                 "overtrue/phplint": "^2.3",
-                "phpunit/phpunit": "^8.5|^9.3"
+                "phpunit/phpunit": "^9.3"
             },
             "type": "library",
             "extra": {
@@ -3925,9 +3925,9 @@
             ],
             "support": {
                 "issues": "https://github.com/pusher/pusher-http-php/issues",
-                "source": "https://github.com/pusher/pusher-http-php/tree/7.0.0"
+                "source": "https://github.com/pusher/pusher-http-php/tree/7.2.2"
             },
-            "time": "2021-05-10T15:22:51+00:00"
+            "time": "2022-12-20T19:52:36+00:00"
         },
         {
             "name": "ralouphie/getallheaders",

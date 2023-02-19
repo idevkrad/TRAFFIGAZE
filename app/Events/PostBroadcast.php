@@ -23,7 +23,7 @@ class PostBroadcast implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return new PresenceChannel('posts');
+        return new PrivateChannel('posts');
     }
 
     public function broadcastWith()

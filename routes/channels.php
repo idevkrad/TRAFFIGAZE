@@ -18,10 +18,7 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('posts', function ($user) {
-    if($user){
-        return $user;
-    }
-    return false;
+    return true;
 });
 
 Broadcast::channel('public-channel', function ($user) {

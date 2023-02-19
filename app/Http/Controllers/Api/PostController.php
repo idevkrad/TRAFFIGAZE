@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\PostResource;
 use Illuminate\Support\Facades\Validator;
+use App\Events\PostBroadcast;
 
 class PostController extends Controller
 {
@@ -42,6 +43,8 @@ class PostController extends Controller
             $data = Post::create(array_merge($request->all(),['coordinates' => json_encode($coordinates)]));
             return $data;
             });
+
+            broadcast(new PostBroadcast(new PostResource($data)));
 
             return response()->json([
                 'status' => true,

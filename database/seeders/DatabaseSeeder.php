@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@krad.com',
             'password' => bcrypt('123456789'),
             'mobile' => '0917153652',
+            'avatar' => 'admin.png',
             'is_admin' => 1,
             'is_active' => 1,
             'created_at' => now(),

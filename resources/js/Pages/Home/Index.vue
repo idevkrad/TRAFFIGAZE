@@ -20,7 +20,7 @@ export default {
         listenForNewEvent(){
             Echo.private('posts')
                 .listen('PostBroadcast', (data) => {
-                    console.log(data.event);
+                    console.log(data);
                 });
             },
     }

@@ -134,7 +134,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     listenForNewEvent: function listenForNewEvent() {
       Echo["private"]('posts').listen('PostBroadcast', function (data) {
-        console.log(data.event);
+        console.log(data);
       });
     }
   }

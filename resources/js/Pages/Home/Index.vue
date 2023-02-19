@@ -1,5 +1,5 @@
 <template>
-    {{ auth}}
+    {{ auth}} s
 </template>
 <script>
 
@@ -12,7 +12,7 @@ export default {
         }
     },
 
-    mounted(){
+    created(){
         this.listenForNewEvent();
     },
 

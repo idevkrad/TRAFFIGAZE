@@ -12,17 +12,11 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'email' => $this->email,
-            'avatar' => $this->avatar,
-            'role' => $this->role,
+            'avatar' => 'http://traffigaze.local/images/avatars/'.$this->avatar,
+            'role' => ($this->is_admin) ? 'Administrator' : 'User',
             'is_active' => $this->is_active,
-            'profile_id' => $this->profile->id,
-            'firstname' => $this->profile->firstname,
-            'lastname' => $this->profile->lastname,
-            'middlename' => $this->profile->middlename,
-            'suffix' => $this->profile->suffix,
-            'gender' => $this->profile->gender,
-            'mobile' => $this->profile->mobile,
-            'birthday' => $this->profile->birthday,
+            'name' => $this->name,
+            'mobile' => $this->mobile,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];

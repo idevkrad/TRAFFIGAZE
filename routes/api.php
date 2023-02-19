@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Resources\UserResource;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,6 +18,8 @@ Route::post('/register', [App\Http\Controllers\Api\AuthController::class, 'creat
 Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'loginUser']);
 Route::post('/logout', [App\Http\Controllers\Api\AuthController::class, 'logoutUser']);
 
+Route::post('/create', [App\Http\Controllers\Api\PostController::class, 'store']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    return new UserResource($request->user());
 });

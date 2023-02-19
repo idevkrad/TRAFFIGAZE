@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     listenForNewEvent: function listenForNewEvent() {
-      Echo.join('presence-posts').listen('PostBroadcast', function (data) {
+      Echo.join('posts').listen('PostBroadcast', function (data) {
         console.log(data.event);
       });
     }
@@ -5585,10 +5585,9 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_5__["default"]({
   // forceTLS: true,
   encrypted: true,
   wsHost: window.location.hostname,
-  wsPort: 6001,
   wssPort: 6001,
   disableStats: true,
-  enabledTransport: ['ws', 'wss']
+  enabledTransport: ['wss']
 });
 
 /***/ }),

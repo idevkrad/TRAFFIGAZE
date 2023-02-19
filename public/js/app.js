@@ -127,6 +127,16 @@ __webpack_require__.r(__webpack_exports__);
       currentUrl: window.location.origin,
       content: 'test'
     };
+  },
+  mounted: function mounted() {
+    this.listenForNewEvent();
+  },
+  methods: {
+    listenForNewEvent: function listenForNewEvent() {
+      Echo.join('posts').listen('PostBroadcast', function (data) {
+        console.log(data.event);
+      });
+    }
   }
 });
 

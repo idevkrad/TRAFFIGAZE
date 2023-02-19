@@ -10,6 +10,20 @@ export default {
             currentUrl: window.location.origin,
             content: 'test'
         }
+    },
+
+    mounted(){
+        this.listenForNewEvent();
+    },
+
+    methods : {
+        listenForNewEvent(){
+            Echo.join('posts')
+                .listen('PostBroadcast', (data) => {
+                    console.log(data.event);
+                    
+                });
+            },
     }
 }
 </script>

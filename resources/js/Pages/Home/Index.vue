@@ -12,7 +12,9 @@ export default {
         }
     },
 
-  
+    created(){
+        this.listenForNewEvent();
+    },
 
     methods : {
         listenForNewEvent(){

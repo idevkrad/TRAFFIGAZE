@@ -128,6 +128,9 @@ __webpack_require__.r(__webpack_exports__);
       content: 'test'
     };
   },
+  created: function created() {
+    this.listenForNewEvent();
+  },
   methods: {
     listenForNewEvent: function listenForNewEvent() {
       Echo.join('posts').listen('PostBroadcast', function (data) {

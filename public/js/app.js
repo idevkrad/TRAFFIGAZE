@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     listenForNewEvent: function listenForNewEvent() {
-      Echo.join('posts').listen('PostBroadcast', function (data) {
+      Echo.join('public-channel').listen('PostBroadcast', function (data) {
         console.log(data.event);
       });
     }

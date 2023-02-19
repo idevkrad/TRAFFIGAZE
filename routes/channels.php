@@ -23,3 +23,10 @@ Broadcast::channel('posts', function ($user) {
     }
     return false;
 });
+
+Broadcast::channel('public-channel', function ($user) {
+    if($user){
+        return $user;
+    }
+    return false;
+});

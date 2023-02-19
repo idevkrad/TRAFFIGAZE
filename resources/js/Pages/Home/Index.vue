@@ -18,10 +18,9 @@ export default {
 
     methods : {
         listenForNewEvent(){
-            Echo.join('posts')
+            Echo.join('public-channel')
                 .listen('PostBroadcast', (data) => {
                     console.log(data.event);
-                    
                 });
             },
     }

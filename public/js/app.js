@@ -5580,10 +5580,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = (pusher_js__WEBPACK_IMPORTED_MODULE_6___default());
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_5__["default"]({
   broadcaster: 'pusher',
-  key: "",
-  cluster: "mt1",
-  forceTLS: true,
-  encrypted: true
+  key: "5646638e3243fee1df4e",
+  cluster: "ap1",
+  // forceTLS: true,
+  encrypted: true,
+  wsHost: window.location.hostname,
+  wsPort: 6001,
+  wssPort: 6001,
+  disableStats: true,
+  enabledTransport: ['ws', 'wss']
 });
 
 /***/ }),

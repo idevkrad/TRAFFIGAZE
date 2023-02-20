@@ -75,13 +75,15 @@ class PostController extends Controller
         $count = PostLike::where('user_id',$user_id)->where('post_id',$post_id)->count();
         if($count == 0){
             PostLike::create($request->all());
+            $message = 'liked';
         }else{
             PostLike::where('user_id',$user_id)->where('post_id',$post_id)->delete();
+            $message = 'unliked';
         }
 
         return response()->json([
             'status' => true,
-            'message' => 'success'
+            'message' => $message
         ], 200);
     }
 

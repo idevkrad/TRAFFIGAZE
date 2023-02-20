@@ -7,7 +7,6 @@
     "require": {
         "php": "^8.0.2",
         "barryvdh/laravel-dompdf": "^1.0",
-        "beyondcode/laravel-websockets": "~1.4",
         "guzzlehttp/guzzle": "^7.2",
         "hashids/hashids": "^4.1",
         "inertiajs/inertia-laravel": "^0.6.2",
@@ -17,7 +16,7 @@
         "maatwebsite/excel": "^3.1",
         "orangehill/iseed": "^3.0",
         "psr/simple-cache": "^1.0",
-        "pusher/pusher-php-server": "~7.0",
+        "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-activitylog": "^4.5",
         "spatie/laravel-welcome-notification": "^2.3"
     },

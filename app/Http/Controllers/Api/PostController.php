@@ -127,4 +127,14 @@ class PostController extends Controller
         ], 200);
     }
 
+    public function view($id){
+        $data = Post::with('tag','user')->where('id',$id)->first();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Post Submitted',
+            'data' => new PostResource($data)
+        ], 200);
+    }
+
 }

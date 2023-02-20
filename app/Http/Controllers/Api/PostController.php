@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Tag;
 use App\Models\Post;
+use App\Models\PostLike;
+use App\Models\PostReport;
+use App\Models\PostComment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
@@ -14,7 +17,12 @@ use App\Events\PostBroadcast;
 class PostController extends Controller
 {
     public function index(){
-
+        $data = Post::latest()->paginate(10);
+        return response()->json([
+            'status' => true,
+            'message' => 'List fetched',
+            'data' => PostResource::collection($data)
+        ], 200);
     }
 
     public function store(Request $request){
@@ -60,5 +68,61 @@ class PostController extends Controller
         }
     }
 
+    public function like(Request $request){
+        $user_id = $request->user_id;
+        $post_id = $request->post_id;
+
+        $count = PostLike::where('user_id',$user_id)->where('post_id',$post_id)->count();
+        if($count == 0){
+            PostLike::create($request->all());
+        }else{
+            PostLike::where('user_id',$user_id)->where('post_id',$post_id)->delete();
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'success'
+        ], 200);
+    }
+
+    public function comment(Request $request){
+        $user_id = $request->user_id;
+        $post_id = $request->post_id;
+
+        $count = PostComment::where('user_id',$user_id)->where('post_id',$post_id)->count();
+        if($count == 0){
+            PostComment::create($request->all());
+        }else{
+            return response()->json([
+                'status' => true,
+                'message' => '1 comment allowed only'
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'success'
+        ], 200);
+    }
+
+    public function report(Request $request){
+        $user_id = $request->user_id;
+        $post_id = $request->post_id;
+
+        $count = PostReport::where('user_id',$user_id)->where('post_id',$post_id)->count();
+        if($count == 0){
+            PostReport::create($request->all());
+        }else{
+            return response()->json([
+                'status' => true,
+                'message' => '1 report allowed only'
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'success'
+        ], 200);
+    }
 
 }

@@ -5,16 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PostComment extends Model
+class PostReport extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['comment','user_id','post_id'];
-
-    public function likes()
-    {
-        return $this->hasMany('App\Models\PostCommentLike', 'comment_id');
-    }
+    protected $fillable = ['user_id','post_id','remark'];
 
     public function post()
     {

@@ -21,6 +21,11 @@ class Post extends Model
         return $this->hasMany('App\Models\PostLike', 'post_id');
     }
 
+    public function reports()
+    {
+        return $this->hasMany('App\Models\PostReport', 'post_id');
+    }
+
     public function tag()
     {
         return $this->belongsTo('App\Models\Tag', 'tag_id', 'id');
@@ -29,5 +34,15 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return date('M d, Y g:i a', strtotime($value));
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return date('M d, Y g:i a', strtotime($value));
     }
 }

@@ -18,10 +18,11 @@ class PostController extends Controller
 {
     public function index(){
         $data = Post::latest()->paginate(10);
+        PostResource::collection($data);
         return response()->json([
             'status' => true,
             'message' => 'List fetched',
-            'data' => PostResource::collection($data)
+            'data' => $data
         ], 200);
     }
 

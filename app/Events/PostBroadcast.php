@@ -21,9 +21,9 @@ class PostBroadcast implements ShouldBroadcast
         $this->post = $post;
     }
 
-    public function broadcastOn()
+     public function broadcastOn()
     {
-        return new PrivateChannel('posts');
+        return ['posts'];
     }
 
     public function broadcastWith()

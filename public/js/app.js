@@ -128,8 +128,7 @@ __webpack_require__.r(__webpack_exports__);
       content: 'test'
     };
   },
-  created: function created() {
-    this.listenForNewEvent();
+  created: function created() {// this.listenForNewEvent();
   },
   methods: {
     listenForNewEvent: function listenForNewEvent() {
@@ -5552,9 +5551,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-toast-notification/dist/theme-sugar.css */ "./node_modules/vue-toast-notification/dist/theme-sugar.css");
 /* harmony import */ var vue3_loading_overlay_dist_vue3_loading_overlay_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue3-loading-overlay/dist/vue3-loading-overlay.css */ "./node_modules/vue3-loading-overlay/dist/vue3-loading-overlay.css");
 /* harmony import */ var _suadelabs_vue3_multiselect_dist_vue3_multiselect_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @suadelabs/vue3-multiselect/dist/vue3-multiselect.css */ "./node_modules/@suadelabs/vue3-multiselect/dist/vue3-multiselect.css");
-/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
-/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
-/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_6__);
 
 window._ = (lodash__WEBPACK_IMPORTED_MODULE_0___default());
 /**
@@ -5574,22 +5570,21 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-
-
-
-window.Pusher = (pusher_js__WEBPACK_IMPORTED_MODULE_6___default());
-window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_5__["default"]({
-  broadcaster: 'pusher',
-  key: "5646638e3243fee1df4e",
-  cluster: "ap1",
-  // forceTLS: true,
-  encrypted: true,
-  wsHost: window.location.hostname,
-  wsPort: 6001,
-  wssPort: 6001,
-  disableStats: true,
-  enabledTransport: ['ws', 'wss']
-});
+// import Echo from 'laravel-echo';
+// import Pusher from 'pusher-js';
+// window.Pusher = Pusher;
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     // forceTLS: true,
+//     encrypted: true,
+//     wsHost: window.location.hostname,
+//     wsPort: 6001,
+//     wssPort: 6001,
+//     disableStats: true,
+//     enabledTransport: ['ws','wss']
+// });
 
 /***/ }),
 

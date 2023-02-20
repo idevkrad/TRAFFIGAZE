@@ -13,7 +13,7 @@ export default {
     },
 
     created(){
-        this.listenForNewEvent();
+        // this.listenForNewEvent();
     },
 
     methods : {

@@ -77,7 +77,7 @@ class PostController extends Controller
         if($count == 0){
             $data = PostLike::create($request->all());
             $message = 'liked';
-            broadcast(new PostBroadcast(new ReactResource($data),'like'));
+            broadcast(new PostBroadcast($data,'like'));
         }else{
             PostLike::where('user_id',$user_id)->where('post_id',$post_id)->delete();
             $message = 'unliked';

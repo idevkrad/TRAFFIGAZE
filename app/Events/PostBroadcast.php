@@ -32,6 +32,7 @@ class PostBroadcast implements ShouldBroadcast
     {
         return [
             'post' => $this->post,
+            'type' => $this->type
         ];
     }
 }

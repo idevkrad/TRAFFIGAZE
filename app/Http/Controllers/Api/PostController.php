@@ -54,7 +54,7 @@ class PostController extends Controller
                 return $data;
             });
 
-            broadcast(new PostBroadcast(new PostResource([$data,'post'])));
+            broadcast(new PostBroadcast(new PostResource($data),'post'));
 
             return response()->json([
                 'status' => true,
@@ -78,7 +78,7 @@ class PostController extends Controller
         if($count == 0){
             $data = PostLike::create($request->all());
             $message = 'liked';
-            broadcast(new PostBroadcast(new PostResource($data,'like')));
+            broadcast(new PostBroadcast(new PostResource($data),'like'));
         }else{
             PostLike::where('user_id',$user_id)->where('post_id',$post_id)->delete();
             $message = 'unliked';

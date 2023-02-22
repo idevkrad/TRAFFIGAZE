@@ -80,9 +80,12 @@ class PostController extends Controller
             $message = 'liked';
             broadcast(new PostBroadcast(new ReactResource($data),$message));
         }else{
-            PostLike::where('user_id',$user_id)->where('post_id',$post_id)->delete();
+            $unlike = PostLike::where('user_id',$user_id)->where('post_id',$post_id)->first();
+            $like_id = $unlike->id;
+            $unlike->delete();
             $message = 'unliked';
-            broadcast(new PostBroadcast($post_id,$message));
+            $data = ['like_id' => $like_id, 'post_id' => $post_id];
+            broadcast(new PostBroadcast($data,$message));
         }
 
         return response()->json([

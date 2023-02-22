@@ -10,7 +10,7 @@ class ReactResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user' => $this->user,
+            'user' => new ProfileResource($this->user),
             'post' => $this->post,
             'created_at' => $this->created_at
         ];

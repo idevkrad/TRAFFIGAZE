@@ -54,7 +54,7 @@ class PostController extends Controller
                 return $data;
             });
 
-            broadcast(new PostBroadcast(new PostResource($data,'post')));
+            broadcast(new PostBroadcast(new PostResource([$data,'post'])));
 
             return response()->json([
                 'status' => true,

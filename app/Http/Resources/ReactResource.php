@@ -6,14 +6,13 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ReactResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'user' => $this->user,
+            'post' => $this->post,
+            'created_at' => $this->created_at
+        ];
     }
 }

@@ -16,6 +16,7 @@ class LikeResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'post_id' => $this->post_id,
             'user' => new ProfileResource($this->user),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at

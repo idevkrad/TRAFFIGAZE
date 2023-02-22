@@ -13,7 +13,7 @@ use App\Http\Resources\UserResource;
 use App\Http\Resources\PostResource;
 use Illuminate\Support\Facades\Validator;
 use App\Events\PostBroadcast;
-use App\Http\Resources\ReactResource;
+use App\Http\Resources\LikeResource;
 
 class PostController extends Controller
 {
@@ -78,7 +78,7 @@ class PostController extends Controller
             $like = PostLike::create($request->all());
             $data = PostLike::with('post','user')->where('id',$like->id)->first();
             $message = 'liked';
-            broadcast(new PostBroadcast(new ReactResource($data),$message));
+            broadcast(new PostBroadcast(new LikeResource($data),$message));
         }else{
             $unlike = PostLike::where('user_id',$user_id)->where('post_id',$post_id)->first();
             $like_id = $unlike->id;

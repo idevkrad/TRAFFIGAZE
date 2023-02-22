@@ -13,6 +13,8 @@ use App\Http\Resources\UserResource;
 use App\Http\Resources\PostResource;
 use Illuminate\Support\Facades\Validator;
 use App\Events\PostBroadcast;
+use App\Events\ReactBroadcast;
+use App\Http\Resources\ReactResource;
 
 class PostController extends Controller
 {
@@ -52,7 +54,7 @@ class PostController extends Controller
                 return $data;
             });
 
-            broadcast(new PostBroadcast(new PostResource($data)));
+            broadcast(new PostBroadcast(new PostResource($data,'post')));
 
             return response()->json([
                 'status' => true,
@@ -74,8 +76,9 @@ class PostController extends Controller
 
         $count = PostLike::where('user_id',$user_id)->where('post_id',$post_id)->count();
         if($count == 0){
-            PostLike::create($request->all());
+            $data = PostLike::create($request->all());
             $message = 'liked';
+            broadcast(new PostBroadcast(new PostResource($data,'like')));
         }else{
             PostLike::where('user_id',$user_id)->where('post_id',$post_id)->delete();
             $message = 'unliked';

@@ -15,10 +15,12 @@ class PostBroadcast implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $post;
+    public $type;
     
-    public function __construct($post)
+    public function __construct($post,$type)
     {
         $this->post = $post;
+        $this->type = $type;
     }
 
      public function broadcastOn()

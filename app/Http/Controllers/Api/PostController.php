@@ -170,23 +170,19 @@ class PostController extends Controller
         ], 200);
     }
 
-    public function location(){
+    public function location(Request $request){
     
-        $apiURL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=6.9304188,122.0820076&key=AIzaSyCG-k6UIxH8HXFQzZvuuya6S5hKuXhMP-c';
-
+        $apiURL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='.$request->lat.','.$request->lng.'&key=AIzaSyCG-k6UIxH8HXFQzZvuuya6S5hKuXhMP-c';
         $client = new \GuzzleHttp\Client();
-
         $response = $client->request('GET', $apiURL);
-
-     
-
         $statusCode = $response->getStatusCode();
-
         $responseBody = json_decode($response->getBody(), true);
 
-    
-
-        dd($responseBody['results'][0]['formatted_address']);
+        return response()->json([
+            'status' => true,
+            'message' => 'location',
+            'data' => $responseBody['results'][0]['formatted_address']
+        ], 200);
     }
 
 }

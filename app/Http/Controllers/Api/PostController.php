@@ -100,7 +100,7 @@ class PostController extends Controller
         $post_id = $request->post_id;
 
         $count = PostComment::where('user_id',$user_id)->where('post_id',$post_id)->count();
-        if($count > 0){
+        if($count >= 0){
             $data = PostComment::create($request->all());
             $message = 'comment';
             $data = new CommentResource($data);

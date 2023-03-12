@@ -54,7 +54,7 @@ class PostController extends Controller
             // dd($request->ip());
             // $coordinates = geoip()->getLocation('49.149.107.122');
             // return response()->json(['coor' => 'ui'], 200);
-                $coordinates = [];
+                $coordinates = $request->coordinates;
                 $data = Post::create(array_merge($request->all(),['coordinates' => json_encode($coordinates)]));
                 return $data;
             });

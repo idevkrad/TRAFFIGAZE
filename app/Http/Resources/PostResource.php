@@ -22,7 +22,7 @@ class PostResource extends JsonResource
             'image' => $this->image,
             'location' => $this->location,
             'barangay' => $this->barangay,
-            'coordinates' => json_encode($this->coordinates),
+            'coordinates' => json_decode($this->coordinates),
             'likes' => LikeResource::collection($this->likes),
             'reports' => ReportResource::collection($this->reports),
             'comments' => CommentResource::collection($this->comments),

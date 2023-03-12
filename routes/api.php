@@ -25,7 +25,7 @@ Route::post('/comment', [App\Http\Controllers\Api\PostController::class, 'commen
 Route::post('/report', [App\Http\Controllers\Api\PostController::class, 'report']);
 Route::get('/view/{id}', [App\Http\Controllers\Api\PostController::class, 'view']);
 Route::get('/lists', [App\Http\Controllers\Api\PostController::class, 'lists']);
-
+Route::get('/location', [App\Http\Controllers\Api\PostController::class, 'location']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return new UserResource($request->user());

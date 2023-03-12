@@ -16,6 +16,7 @@ class CommentResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'post_id' => $this->post_id,
             'comment' => $this->comment,
             'user' => new ProfileResource($this->user),
             'created_at' => $this->created_at,

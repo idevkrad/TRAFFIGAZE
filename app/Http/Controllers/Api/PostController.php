@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\PostLike;
 use App\Models\PostReport;
 use App\Models\PostComment;
+use App\Models\LocationBarangay;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
@@ -150,6 +151,22 @@ class PostController extends Controller
             'status' => true,
             'message' => 'Post Submitted',
             'data' => new PostResource($data)
+        ], 200);
+    }
+
+    public function lists(){
+        $tags = Tag::all();
+        $barangays = LocationBarangay::all();
+
+        $data = [
+            'tags' => $tags,
+            'barangays' => $barangays
+        ];
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Lists',
+            'data' => $data
         ], 200);
     }
 

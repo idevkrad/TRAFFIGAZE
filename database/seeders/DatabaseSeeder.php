@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(TagsTableSeeder::class);
+        $this->call(LocationBarangaysTableSeeder::class);
     }
 }

@@ -18,7 +18,10 @@ return new class extends Migration
             $table->smallIncrements('id');
             $table->json('coordinates');
             $table->longText('information');
+            $table->text('location');
             $table->string('image',200)->nullable();
+            $table->smallInteger('barangay_id')->unsigned()->index();
+            $table->foreign('barangay_id')->references('id')->on('location_barangays')->onDelete('cascade');
             $table->tinyInteger('tag_id')->unsigned()->index();
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
             $table->smallInteger('user_id')->unsigned()->index();

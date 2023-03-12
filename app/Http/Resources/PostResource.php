@@ -18,7 +18,7 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'information' => $this->information,
             'user' => new ProfileResource($this->user),
-            'tag' => $this->tag,
+            'tag' => new TagResource($this->tag),
             'image' => $this->image,
             'location' => $this->location,
             'barangay' => $this->barangay,

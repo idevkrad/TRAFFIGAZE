@@ -186,7 +186,7 @@ class PostController extends Controller
 
     
 
-        dd($responseBody['results']);
+        dd($responseBody['results'][0]['formatted_address']);
     }
 
 }

@@ -18,13 +18,18 @@ use App\Http\Resources\CommentResource;
 
 class PostController extends Controller
 {
-    public function index(){
-        $data = Post::latest()->paginate(10);
-        PostResource::collection($data);
+    public function index(Request $request){
+
+        if($request->type == 'latest'){
+            $data = Post::latest()->paginate(10);
+        }else{
+            $data = Post::withCount('likes')->orderBy('likes_count', 'desc')->paginate(10);
+        }
+
         return response()->json([
             'status' => true,
             'message' => 'List fetched',
-            'data' => $data
+            'data' => PostResource::collection($data)
         ], 200);
     }
 
@@ -100,7 +105,7 @@ class PostController extends Controller
         $post_id = $request->post_id;
 
         $count = PostComment::where('user_id',$user_id)->where('post_id',$post_id)->count();
-        if($count >= 0){
+        if($count == 0){
             $data = PostComment::create($request->all());
             $message = 'comment';
             $data = new CommentResource($data);

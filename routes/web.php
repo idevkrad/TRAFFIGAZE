@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {return inertia('Auth/Login');});
+Route::get('/', function () {return '';});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', function () {  return inertia('Home/Index'); });

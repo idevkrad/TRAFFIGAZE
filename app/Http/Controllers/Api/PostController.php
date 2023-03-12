@@ -14,6 +14,7 @@ use App\Http\Resources\PostResource;
 use Illuminate\Support\Facades\Validator;
 use App\Events\PostBroadcast;
 use App\Http\Resources\LikeResource;
+use App\Http\Resources\CommentResource;
 
 class PostController extends Controller
 {
@@ -100,7 +101,10 @@ class PostController extends Controller
 
         $count = PostComment::where('user_id',$user_id)->where('post_id',$post_id)->count();
         if($count == 0){
-            PostComment::create($request->all());
+            $data = PostComment::create($request->all());
+            $message = 'comment';
+            $data = new CommentResource($data);
+            broadcast(new PostBroadcast($data,$message));
         }else{
             return response()->json([
                 'status' => true,

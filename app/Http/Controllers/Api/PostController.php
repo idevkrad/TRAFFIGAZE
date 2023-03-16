@@ -132,7 +132,16 @@ class PostController extends Controller
 
         $count = PostReport::where('user_id',$user_id)->where('post_id',$post_id)->count();
         if($count == 0){
-            PostReport::create($request->all());
+            if(PostReport::create($request->all())){
+                $unlike = PostLike::where('user_id',$user_id)->where('post_id',$post_id)->first();
+                if($unlike){
+                    $like_id = $unlike->id;
+                    $unlike->delete();
+                    $message = 'unliked';
+                    $data = ['like_id' => $like_id, 'post_id' => $post_id];
+                    broadcast(new PostBroadcast($data,$message));
+                }
+            }
         }else{
             return response()->json([
                 'status' => true,

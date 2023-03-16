@@ -46,7 +46,7 @@ class PostController extends Controller
             $data = \DB::transaction(function () use ($request){
                 $validate = Validator::make($request->all(),[
                     'information' => 'required',
-                    'image' => 'nullable|mimes:jpeg,jpg,png',
+                    'image' => 'nullable|image64:jpeg,jpg,png',
                     'tag_id' => 'required',
                     'user_id' => 'required'
                 ]);

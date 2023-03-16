@@ -145,8 +145,8 @@ class PostController extends Controller
                     $like_id = $unlike->id;
                     $unlike->delete();
                     $message = 'unliked';
-                    $data = ['like_id' => $like_id, 'post_id' => $post_id];
-                    broadcast(new PostBroadcast($data,$message));
+                    $data2 = ['like_id' => $like_id, 'post_id' => $post_id];
+                    broadcast(new PostBroadcast($data2,$message));
                 }
 
                 $message = 'report';

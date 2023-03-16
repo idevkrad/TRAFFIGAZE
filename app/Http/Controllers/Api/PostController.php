@@ -256,13 +256,13 @@ class PostController extends Controller
 
         switch($type){
             case 'like':
-                $data = PostLike::where('post_id',$post_id)->updated(['seened_by',1]);
+                $data = PostLike::where('post_id',$post_id)->update(['seened_by',1]);
             break;
             case 'comment':
-                $data = PostComment::where('post_id',$post_id)->updated(['seened_by',1]);
+                $data = PostComment::where('post_id',$post_id)->update(['seened_by',1]);
             break;
             case 'report':
-                $data = PostReport::where('post_id',$post_id)->updated(['seened_by',1]);
+                $data = PostReport::where('post_id',$post_id)->update(['seened_by',1]);
             break;
         }
     }

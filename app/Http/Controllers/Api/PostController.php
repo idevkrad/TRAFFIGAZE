@@ -220,8 +220,9 @@ class PostController extends Controller
         ], 200);
     }
 
-    public function notification(){
-        $data = Post::whereHas('likes',function ($query) {
+    public function notification(Request $request){
+        $data = Post::where('user_id',$request->id)
+        ->whereHas('likes',function ($query) {
            $query->where('seened_by',0);
         })->get();
 

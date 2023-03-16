@@ -26,6 +26,7 @@ class AuthController extends Controller
                 'mobile' => 'required|unique:users,mobile',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required',
+                'avatar' => 'nullable|image64:jpeg,jpg,png',
                 'confirm_password' => 'same:password',
             ]);
 
@@ -37,9 +38,28 @@ class AuthController extends Controller
                 ], 401);
             }
 
+            if($request->avatar){
+                $dd = $request->avatar;
+                $img = explode(',', $dd);
+                $ini =substr($img[0], 11);
+                $type = explode(';', $ini);
+                if($type[0] == 'png'){
+                    $image = str_replace('data:image/png;base64,', '', $dd);
+                }else{
+                    $image = str_replace('data:image/jpeg;base64,', '', $dd);
+                }
+                $image = str_replace(' ', '+', $image);
+                $imageName =  date('Y').'-'.date('mhis').'.'.$type[0];
+                
+                if(\File::put(public_path('images/avatars'). '/' . $imageName, base64_decode($image))){
+                    //
+                }
+            }
+
             $user = User::create([
                 'email' => $request->email,
                 'name' => $request->name,
+                'avatar' => $imageName,
                 'mobile' => $request->mobile,
                 'password' => Hash::make($request->password)
             ]);

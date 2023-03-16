@@ -27,7 +27,7 @@ class PostController extends Controller
     public function index(Request $request){
 
         if($request->type == 'latest'){
-            $data = Post::whereDate('created_at',now())->get();
+            $data = Post::whereDate('created_at',now())->ordeyBy('created_at','DESC')->get();
         }else if($request->type == 'all'){
             $data = Post::whereDate('created_at',now())->get();
         }else{

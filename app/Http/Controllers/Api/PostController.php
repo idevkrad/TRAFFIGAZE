@@ -221,12 +221,30 @@ class PostController extends Controller
     }
 
     public function notification(Request $request){
-        $data = Post::where('user_id',$request->id)
-        ->whereHas('likes',function ($query) {
-           $query->where('seened_by',0);
+        $id = $request->id; $array = [];
+        
+        $likes = PostLike::where('seened_by',0)
+        ->whereHas('post',function ($query) use ($id){
+           $query->where('user_id',$id);
         })->get();
 
-        return $data;
+        $comments = PostComment::where('seened_by',0)
+        ->whereHas('post',function ($query) use ($id){
+           $query->where('user_id',$id);
+        })->get();
+
+        $reports = PostReport::where('seened_by',0)
+        ->whereHas('post',function ($query) use ($id){
+           $query->where('user_id',$id);
+        })->get();
+
+        $array[] = [
+            'likes' => $likes,
+            'comments' => $comments,
+            'reports' => $reports
+        ];
+
+        return $array;
     }
 
 }

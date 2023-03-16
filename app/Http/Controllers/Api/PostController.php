@@ -148,7 +148,7 @@ class PostController extends Controller
             }
         }else{
             $unreported = PostReport::where('user_id',$user_id)->where('post_id',$post_id)->first();
-            $reported_id = $unreported->id;
+            $report_id = $unreported->id;
             $unreported->delete();
             $message = 'unreported';
             $data = ['report_id' => $report_id, 'post_id' => $post_id];

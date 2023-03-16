@@ -224,7 +224,7 @@ class PostController extends Controller
     }
 
     public function notification(Request $request){
-        $id = $request->id; $array = [];
+        $id = $request->id; 
         
         $likes = PostLike::with('post','user')->where('seened_by',0)
         ->whereHas('post',function ($query) use ($id){
@@ -241,7 +241,7 @@ class PostController extends Controller
            $query->where('user_id',$id);
         })->get();
 
-        $array[] = [
+        $array = [
             'likes' => LikeNotiResource::collection($likes),
             'comments' => CommentNotiResource::collection($comments),
             'reports' => ReportNotiResource::collection($reports)

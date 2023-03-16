@@ -79,45 +79,6 @@ class PostController extends Controller
         }
     }
 
-    public function like(Request $request){
-        $user_id = $request->user_id;
-        $post_id = $request->post_id;
-
-        $count = PostLike::where('user_id',$user_id)->where('post_id',$post_id)->count();
-        if($count == 0){
-            $like = PostLike::create($request->all());
-            $data = PostLike::with('post','user')->where('id',$like->id)->first();
-            $message = 'liked';
-            broadcast(new PostBroadcast(new LikeResource($data),$message));
-
-            if($like){
-                $unreport = PostReport::where('user_id',$user_id)->where('post_id',$post_id)->first();
-                if($unreport){
-                    $report_id = $unreport->id;
-                    $unreport->delete();
-                    $message = 'unreported';
-                    $data2 = ['report_id' => $report_id, 'post_id' => $post_id];
-                    broadcast(new PostBroadcast($data2,$message));
-                }
-
-                $message = 'report';
-                broadcast(new PostBroadcast(new ReportResource($data),$message));
-            }
-        }else{
-            $unlike = PostLike::where('user_id',$user_id)->where('post_id',$post_id)->first();
-            $like_id = $unlike->id;
-            $unlike->delete();
-            $message = 'unliked';
-            $data = ['like_id' => $like_id, 'post_id' => $post_id];
-            broadcast(new PostBroadcast($data,$message));
-        }
-
-        return response()->json([
-            'status' => true,
-            'message' => $message
-        ], 200);
-    }
-
     public function comment(Request $request){
         $user_id = $request->user_id;
         $post_id = $request->post_id;
@@ -140,6 +101,43 @@ class PostController extends Controller
             'message' => 'success'
         ], 200);
     }
+
+    public function like(Request $request){
+        $user_id = $request->user_id;
+        $post_id = $request->post_id;
+
+        $count = PostLike::where('user_id',$user_id)->where('post_id',$post_id)->count();
+        if($count == 0){
+            $like = PostLike::create($request->all());
+            $data = PostLike::with('post','user')->where('id',$like->id)->first();
+            $message = 'liked';
+            broadcast(new PostBroadcast(new LikeResource($data),$message));
+
+            if($like){
+                $unreport = PostReport::where('user_id',$user_id)->where('post_id',$post_id)->first();
+                if($unreport){
+                    $report_id = $unreport->id;
+                    $unreport->delete();
+                    $message = 'unreported';
+                    $data2 = ['report_id' => $report_id, 'post_id' => $post_id];
+                    broadcast(new PostBroadcast($data2,$message));
+                }
+            }
+        }else{
+            $unlike = PostLike::where('user_id',$user_id)->where('post_id',$post_id)->first();
+            $like_id = $unlike->id;
+            $unlike->delete();
+            $message = 'unliked';
+            $data = ['like_id' => $like_id, 'post_id' => $post_id];
+            broadcast(new PostBroadcast($data,$message));
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => $message
+        ], 200);
+    }
+
 
     public function report(Request $request){
         $user_id = $request->user_id;

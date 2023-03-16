@@ -23,11 +23,11 @@ class PostController extends Controller
     public function index(Request $request){
 
         if($request->type == 'latest'){
-            $data = Post::latest()->paginate(10);
+            $data = Post::whereDate('created_at',now())->get();
         }else if($request->type == 'all'){
             $data = Post::whereDate('created_at',now())->get();
         }else{
-            $data = Post::withCount('likes')->orderBy('likes_count', 'desc')->paginate(10);
+            $data = Post::withCount('likes')->whereDate('created_at',now())->orderBy('likes_count', 'desc')->get();
         }
 
         return response()->json([

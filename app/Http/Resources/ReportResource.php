@@ -16,6 +16,7 @@ class ReportResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'post_id' => $this->post_id,
             'user' => new ProfileResource($this->user),
             'remark' => $this->remark,
             'created_at' => $this->created_at,

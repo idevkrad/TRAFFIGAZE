@@ -25,7 +25,7 @@ class PostController extends Controller
         if($request->type == 'latest'){
             $data = Post::latest()->paginate(10);
         }else if($request->type == 'all'){
-            $data = Post::where('created_at',now())->get();
+            $data = Post::whereDate('created_at',now())->get();
         }else{
             $data = Post::withCount('likes')->orderBy('likes_count', 'desc')->paginate(10);
         }

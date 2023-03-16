@@ -58,27 +58,26 @@ class PostController extends Controller
                         'errors' => $validate->errors()
                     ], 401);
                 }
-
+                $imageName = null;
                 $coordinates = $request->coordinates;
-                // if($request->image){
-                //     // $dd = $request->image;
-                //     // $img = explode(',', $dd);
-                //     // $ini =substr($img[0], 11);
-                //     // $type = explode(';', $ini);
-                //     // if($type[0] == 'png'){
-                //     //     $image = str_replace('data:image/png;base64,', '', $dd);
-                //     // }else{
-                //     //     $image = str_replace('data:image/jpeg;base64,', '', $dd);
-                //     // }
-                //     // $image = str_replace(' ', '+', $image);
-                //     // $imageName =  date('Y').'-'.date('mhis').'.'.$type[0];
+                if($request->image){
+                    $dd = $request->image;
+                    $img = explode(',', $dd);
+                    $ini =substr($img[0], 11);
+                    $type = explode(';', $ini);
+                    if($type[0] == 'png'){
+                        $image = str_replace('data:image/png;base64,', '', $dd);
+                    }else{
+                        $image = str_replace('data:image/jpeg;base64,', '', $dd);
+                    }
+                    $image = str_replace(' ', '+', $image);
+                    $imageName =  date('Y').'-'.date('mhis').'.'.$type[0];
                     
-                //     // if(\File::put(public_path('images/posts'). '/' . $imageName, base64_decode($image))){
+                    if(\File::put(public_path('images/posts'). '/' . $imageName, base64_decode($image))){
                         
-                //     // }
-                // }
-                $image = 'wewe';
-                $data = Post::create(array_merge($request->all(),['coordinates' => json_encode($coordinates)]));
+                    }
+                }
+                $data = Post::create(array_merge($request->all(),['coordinates' => json_encode($coordinates), 'image' => $imageName]));
                 return $data;
             });
 

@@ -78,7 +78,7 @@ class PostController extends Controller
                     // }
                 }
                 $image = 'wewe';
-                $data = Post::create(array_merge($request->all(),['coordinates' => json_encode($coordinates), 'image' => $imageName]));
+                $data = Post::create(array_merge($request->all(),['coordinates' => json_encode($coordinates)]));
                 return $data;
             });
 

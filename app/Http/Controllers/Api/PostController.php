@@ -250,4 +250,21 @@ class PostController extends Controller
         return $array;
     }
 
+    public function viewNoti(Request $request){
+        $type = $request->type;
+        $post_id = $request->id;
+
+        switch($type){
+            case 'like':
+                $data = PostLike::where('post_id',$post_id)->updated(['seened_by',1]);
+            break;
+            case 'comment':
+                $data = PostComment::where('post_id',$post_id)->updated(['seened_by',1]);
+            break;
+            case 'report':
+                $data = PostReport::where('post_id',$post_id)->updated(['seened_by',1]);
+            break;
+        }
+    }
+
 }

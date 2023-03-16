@@ -61,7 +61,7 @@ class PostController extends Controller
 
                 $coordinates = $request->coordinates;
                 
-                $image = 'wewe';
+                $imageName = 'wewe';
                 $data = Post::create(array_merge($request->all(),['coordinates' => json_encode($coordinates), 'image' => $imageName]));
                 return $data;
             });

@@ -74,7 +74,7 @@ class PostController extends Controller
                     $imageName =  date('Y').'-'.date('mhis').'.'.$type[0];
                     
                     if(\File::put(public_path('images/posts'). '/' . $imageName, base64_decode($image))){
-                        
+                        //
                     }
                 }
                 $data = Post::create(array_merge($request->all(),['coordinates' => json_encode($coordinates), 'image' => $imageName]));

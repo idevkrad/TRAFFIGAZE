@@ -15,6 +15,7 @@ use App\Http\Resources\PostResource;
 use Illuminate\Support\Facades\Validator;
 use App\Events\PostBroadcast;
 use App\Http\Resources\LikeResource;
+use App\Http\Resources\ReportResource;
 use App\Http\Resources\CommentResource;
 
 class PostController extends Controller
@@ -146,10 +147,12 @@ class PostController extends Controller
                 broadcast(new PostBroadcast(new ReportResource($data),$message));
             }
         }else{
-            return response()->json([
-                'status' => true,
-                'message' => '1 report allowed only'
-            ], 200);
+            $unreported = PostReport::where('user_id',$user_id)->where('post_id',$post_id)->first();
+            $reported_id = $unreported->id;
+            $unreported->delete();
+            $message = 'unreported';
+            $data = ['report_id' => $report_id, 'post_id' => $post_id];
+            broadcast(new PostBroadcast($data,$message));
         }
 
         return response()->json([

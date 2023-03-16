@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PostLike extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id','post_id'];
+    protected $fillable = ['user_id','post_id','seened_by'];
 
     public function post()
     {

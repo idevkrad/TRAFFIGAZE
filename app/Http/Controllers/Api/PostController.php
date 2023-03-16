@@ -115,7 +115,7 @@ class PostController extends Controller
             $data = PostLike::with('post','user')->where('id',$like->id)->first();
             $message = 'liked';
             broadcast(new PostBroadcast(new LikeResource($data),$message));
-
+            broadcast(new PostBroadcast(new LikeNotiResource($data),'notification'));
             if($like){
                 $unreport = PostReport::where('user_id',$user_id)->where('post_id',$post_id)->first();
                 if($unreport){

@@ -15,6 +15,7 @@ class CommentNotiResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'avatar' => 'https://traffigaze.rjumli.me/images/avatars/'.$this->user->avatar,
             'name' => $this->user->name,
             'text' => 'commented your post.',
             'type' => 'comment',

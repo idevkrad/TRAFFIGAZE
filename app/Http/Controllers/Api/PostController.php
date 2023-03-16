@@ -223,7 +223,7 @@ class PostController extends Controller
     public function notification(Request $request){
         $id = $request->id; $array = [];
         
-        $likes = PostLike::where('seened_by',0)
+        $likes = PostLike::with('post','user')->where('seened_by',0)
         ->whereHas('post',function ($query) use ($id){
            $query->where('user_id',$id);
         })->get();

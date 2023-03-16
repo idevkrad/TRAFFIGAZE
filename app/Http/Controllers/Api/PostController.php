@@ -17,6 +17,9 @@ use App\Events\PostBroadcast;
 use App\Http\Resources\LikeResource;
 use App\Http\Resources\ReportResource;
 use App\Http\Resources\CommentResource;
+use App\Http\Resources\LikeNotiResource;
+use App\Http\Resources\CommentNotiResource;
+use App\Http\Resources\ReportNotiResource;
 
 class PostController extends Controller
 {
@@ -228,20 +231,20 @@ class PostController extends Controller
            $query->where('user_id',$id);
         })->get();
 
-        $comments = PostComment::where('seened_by',0)
+        $comments = PostComment::with('post','user')->where('seened_by',0)
         ->whereHas('post',function ($query) use ($id){
            $query->where('user_id',$id);
         })->get();
 
-        $reports = PostReport::where('seened_by',0)
+        $reports = PostReport::with('post','user')->where('seened_by',0)
         ->whereHas('post',function ($query) use ($id){
            $query->where('user_id',$id);
         })->get();
 
         $array[] = [
-            'likes' => $likes,
-            'comments' => $comments,
-            'reports' => $reports
+            'likes' => LikeNotiResource::collection($likes),
+            'comments' => CommentNotiResource::collection($comments),
+            'reports' => ReportNotiResource::collection($reports)
         ];
 
         return $array;

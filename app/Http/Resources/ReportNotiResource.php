@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class LikeNotiResource extends JsonResource
+class ReportNotiResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,8 @@ class LikeNotiResource extends JsonResource
     {
         return [
             'name' => $this->user->name,
-            'text' => 'likes your post.',
-            'type' => 'like',
+            'text' => 'reported your post.',
+            'type' => 'report',
             'post_id' => $this->post->id,
             'created' => $this->created_at
         ];

@@ -19,7 +19,7 @@ class PostResource extends JsonResource
             'information' => $this->information,
             'user' => new ProfileResource($this->user),
             'tag' => new TagResource($this->tag),
-            'image' => $this->image,
+            'image' => ($this->image) ? 'https://traffigaze.rjumli.me/images/avatars/'.$this->image : null,
             'location' => $this->location,
             'barangay' => $this->barangay,
             'coordinates' => json_decode($this->coordinates),

@@ -9,7 +9,7 @@ class PostComment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['comment','user_id','post_id'];
+    protected $fillable = ['comment','user_id','post_id','seened_by'];
 
     public function likes()
     {

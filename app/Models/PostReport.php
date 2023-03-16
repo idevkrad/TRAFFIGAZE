@@ -9,7 +9,7 @@ class PostReport extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','post_id','remark'];
+    protected $fillable = ['user_id','post_id','remark','seened_by'];
 
     public function post()
     {

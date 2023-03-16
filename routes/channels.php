@@ -24,3 +24,10 @@ Broadcast::channel('posts', function ($user) {
     return false;
 });
 
+Broadcast::channel('map', function ($user) {
+    if($user){
+        return $user;
+    }
+    return false;
+});
+

@@ -14,6 +14,7 @@ use App\Http\Resources\UserResource;
 use App\Http\Resources\PostResource;
 use Illuminate\Support\Facades\Validator;
 use App\Events\PostBroadcast;
+use App\Events\MapBroadcast;
 use App\Http\Resources\LikeResource;
 use App\Http\Resources\ReportResource;
 use App\Http\Resources\CommentResource;
@@ -58,15 +59,13 @@ class PostController extends Controller
                     ], 401);
                 }
 
-            // dd($request->ip());
-            // $coordinates = geoip()->getLocation('49.149.107.122');
-            // return response()->json(['coor' => 'ui'], 200);
                 $coordinates = $request->coordinates;
                 $data = Post::create(array_merge($request->all(),['coordinates' => json_encode($coordinates)]));
                 return $data;
             });
 
             broadcast(new PostBroadcast(new PostResource($data),'post'));
+            broadcast(new MapBroadcast(new PostResource($data),'post'));
 
             return response()->json([
                 'status' => true,

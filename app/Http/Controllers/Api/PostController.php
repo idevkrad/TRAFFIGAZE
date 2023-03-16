@@ -72,7 +72,7 @@ class PostController extends Controller
                         $image = str_replace('data:image/jpeg;base64,', '', $data);
                     }
                     $image = str_replace(' ', '+', $image);
-                    $imageName = $request->user_id.'.'.$type[0];
+                    $imageName =  date('Y').'-'.date('mhis').'.'.$type[0];
                     
                     if(\File::put(public_path('images/posts'). '/' . $imageName, base64_decode($image))){
                         

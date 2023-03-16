@@ -92,6 +92,7 @@ class PostController extends Controller
             $message = 'comment';
             $data = new CommentResource($data);
             broadcast(new PostBroadcast($data,$message));
+            broadcast(new PostBroadcast(new CommentNotiResource($data),'notification'));
         }else{
             return response()->json([
                 'status' => true,
@@ -153,6 +154,7 @@ class PostController extends Controller
             $data = PostReport::with('post','user')->where('id',$report->id)->first();
             $message = 'report';
             broadcast(new PostBroadcast(new ReportResource($data),$message));
+            broadcast(new PostBroadcast(new ReportNotiResource($data),'notification'));
 
             if($report){
                 $unlike = PostLike::where('user_id',$user_id)->where('post_id',$post_id)->first();

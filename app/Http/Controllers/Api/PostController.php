@@ -61,7 +61,6 @@ class PostController extends Controller
 
                 $coordinates = $request->coordinates;
                 if($request->image){
-                    dd($request->image);
                     $data = $request->image;
                     $img = explode(',', $data);
                     $ini =substr($img[0], 11);

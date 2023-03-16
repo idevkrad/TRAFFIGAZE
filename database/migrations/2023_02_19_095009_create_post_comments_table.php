@@ -17,6 +17,7 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->smallIncrements('id');
             $table->longText('comment');
+            $table->boolean('seened_by')->default(0);
             $table->smallInteger('post_id')->unsigned()->index();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->smallInteger('user_id')->unsigned()->index();

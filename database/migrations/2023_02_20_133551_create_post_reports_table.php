@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('post_reports', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->smallIncrements('id');
+            $table->boolean('seened_by')->default(0);
             $table->string('remark')->nullable();
             $table->smallInteger('post_id')->unsigned()->index();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');

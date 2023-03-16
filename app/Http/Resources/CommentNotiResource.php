@@ -20,6 +20,7 @@ class CommentNotiResource extends JsonResource
             'text' => 'commented on your post.',
             'type' => 'comment',
             'post_id' => $this->post->id,
+            'user_id' => $this->post->user_id,
             'created' => $this->created_at
         ];
     }

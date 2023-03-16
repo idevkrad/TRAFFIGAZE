@@ -20,6 +20,7 @@ class ReportNotiResource extends JsonResource
             'text' => 'reported your post.',
             'type' => 'report',
             'post_id' => $this->post->id,
+            'user_id' => $this->post->user_id,
             'created' => $this->created_at
         ];
     }

@@ -141,6 +141,9 @@ class PostController extends Controller
                     $data = ['like_id' => $like_id, 'post_id' => $post_id];
                     broadcast(new PostBroadcast($data,$message));
                 }
+
+                $message = 'report';
+                broadcast(new PostBroadcast(new ReportResource($data),$message));
             }
         }else{
             return response()->json([

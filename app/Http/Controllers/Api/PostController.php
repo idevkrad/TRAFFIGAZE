@@ -59,7 +59,7 @@ class PostController extends Controller
                     ], 401);
                 }
                 $imageName = null;
-                $coordinates = $request->coordinates;
+                $coordinates = json_decode($request->coordinates);
                 if($request->image){
                     $dd = $request->image;
                     $img = explode(',', $dd);

@@ -26,7 +26,14 @@ class PostController extends Controller
 {
     public function index(Request $request){
 
-        if($request->type == 'latest'){
+        if($request->type == 'barangay'){
+            $barangay = $request->barangay;
+            $data = Post::whereDate('created_at',now())
+            ->when($barangay, function ($query, $barangay) {
+                $query->where('barangay_id',$barangay);
+            })
+            ->orderBy('created_at','DESC')->get();
+        }else if($request->type == 'latest'){
             $data = Post::whereDate('created_at',now())->orderBy('created_at','DESC')->get();
         }else if($request->type == 'all'){
             $data = Post::whereDate('created_at',now())->get();

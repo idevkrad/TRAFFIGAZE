@@ -22,7 +22,7 @@ class PostResource extends JsonResource
             'image' => ($this->image) ? 'https://traffigaze.rjumli.me/images/posts/'.$this->image : null,
             'location' => $this->location,
             'barangay' => $this->barangay,
-            'coordinates' => $this->coordinates,
+            'coordinates' => json_encode($this->coordinates),
             'likes' => LikeResource::collection($this->likes),
             'reports' => ReportResource::collection($this->reports),
             'comments' => CommentResource::collection($this->comments),

@@ -16,7 +16,7 @@ class ReportNotiResource extends JsonResource
     {
         return [
             'avatar' => 'https://traffigaze.info/images/avatars/'.$this->user->avatar,
-            'name' => $this->user->name,
+            'name' => ucwords(strtolower($this->user->name)),
             'text' => 'reported your post.',
             'type' => 'report',
             'post_id' => $this->post->id,

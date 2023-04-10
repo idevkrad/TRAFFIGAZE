@@ -16,7 +16,7 @@ class CommentNotiResource extends JsonResource
     {
         return [
             'avatar' => 'https://traffigaze.info/images/avatars/'.$this->user->avatar,
-            'name' => $this->user->name,
+            'name' => ucwords(strtolower($this->user->name)),
             'text' => 'commented on your post.',
             'type' => 'comment',
             'post_id' => $this->post->id,

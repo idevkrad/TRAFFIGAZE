@@ -18,7 +18,7 @@ class ProfileResource extends JsonResource
             'id' => $this->id,
             'email' => $this->email,
             'avatar' => 'https://traffigaze.info/images/avatars/'.$this->avatar,
-            'name' => $this->name,
+            'name' => ucwords(strtolower($this->name)),
         ];
     }
 }

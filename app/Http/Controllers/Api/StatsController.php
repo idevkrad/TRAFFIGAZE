@@ -58,7 +58,7 @@ class StatsController extends Controller
         $series = [];
         $names = [];
 
-        $query = Barangay::query();
+        $query = LocationBarangay::query();
         if($request->type != 'yesterday'){
             $query->withCount('posts');
         }else{

@@ -295,9 +295,23 @@ class PostController extends Controller
         }
     }
 
-    public function history($id){
+    public function tag($id){
         $tag = Tag::where('id',$id)->first();
         $data = Post::where('tag_id',$id)->whereDate('created_at', Carbon::yesterday())->orderBy('created_at','DESC')->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'List fetched',
+            'data' => [
+                'tag' => $tag,
+                'lists' => PostResource::collection($data)
+            ]
+        ], 200);
+    }
+
+    public function barangay($id){
+        $tag = Barangay::where('id',$id)->first();
+        $data = Post::where('barangay_id',$id)->whereDate('created_at', Carbon::yesterday())->orderBy('created_at','DESC')->get();
 
         return response()->json([
             'status' => true,

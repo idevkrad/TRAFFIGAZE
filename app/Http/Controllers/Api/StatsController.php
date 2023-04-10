@@ -11,12 +11,20 @@ class StatsController extends Controller
 {
     public function index(Request $request){
 
-        $data = Tag::withCount('posts')->orderBy('posts_count', 'desc')->get();
+        $tags = Tag::withCount('posts')->orderBy('posts_count', 'desc')->get();
+
+        foreach($tags as $tag){
+            $series[] = $tag->posts_count;
+            $names[] = $tag->name;
+        }
 
         return response()->json([
             'status' => true,
             'message' => 'List fetched',
-            'data' => $data
+            'data' => [
+                'series' => $series,
+                'labels' => $names
+            ]
         ], 200);
     }
 

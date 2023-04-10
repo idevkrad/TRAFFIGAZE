@@ -304,7 +304,7 @@ class PostController extends Controller
             'message' => 'List fetched',
             'data' => [
                 'tag' => $tag,
-                'lists' => $data
+                'lists' => PostResource::collection($data)
             ]
         ], 200);
     }

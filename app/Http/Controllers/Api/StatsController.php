@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\Post;
+use App\Models\LocationBarangay;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -57,7 +58,7 @@ class StatsController extends Controller
         $series = [];
         $names = [];
 
-        $query = Tag::query();
+        $query = Barangay::query();
         if($request->type != 'yesterday'){
             $query->withCount('posts');
         }else{

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
@@ -10,23 +11,40 @@ use Illuminate\Http\Request;
 class StatsController extends Controller
 {
     public function index(Request $request){
+        $series = [];
+        $names = [];
 
-        $tags = Tag::withCount('posts')->orderBy('posts_count', 'desc')->get();
-
-        foreach($tags as $tag){
-            $series[] = $tag->posts_count;
-            $names[] = $tag->name;
+        $query = Tag::query();
+        $query->withCount('posts');
+        if($request->type == 'yesterday'){
+            $query->whereHas('posts',function ($query) {
+                $query->whereDate('created_at', Carbon::yesterday()); 
+            });
         }
+        $tags = $query->orderBy('posts_count', 'desc')->get();
+        
+        if($request->type == 'yesterday'){
+            return response()->json([
+                'status' => true,
+                'message' => 'List fetched',
+                'lists' => $tags
+            ], 200);
+        }else{
+            foreach($tags as $tag){
+                $series[] = $tag->posts_count;
+                $names[] = $tag->name;
+            }
 
-        return response()->json([
-            'status' => true,
-            'message' => 'List fetched',
-            'lists' => $tags,
-            'data' => [
-                'series' => $series,
-                'labels' => $names
-            ]
-        ], 200);
+            return response()->json([
+                'status' => true,
+                'message' => 'List fetched',
+                'lists' => $tags,
+                'data' => [
+                    'series' => $series,
+                    'labels' => $names
+                ]
+            ], 200);
+        }
     }
 
 }

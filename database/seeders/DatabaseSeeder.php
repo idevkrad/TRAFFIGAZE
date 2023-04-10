@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \DB::table('users')->insert([
-            'name' => 'Ra-ouf Jumli',
-            'email' => 'admin@krad.com',
+            'name' => 'Traffigaze Admin',
+            'email' => 'admin@traffigaze.com',
             'password' => bcrypt('123456789'),
-            'mobile' => '0917153652',
+            'mobile' => '09123456789',
             'avatar' => 'admin.png',
             'is_admin' => 1,
             'is_active' => 1,

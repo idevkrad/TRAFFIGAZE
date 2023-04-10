@@ -21,6 +21,7 @@ class StatsController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'List fetched',
+            'lists' => $tags,
             'data' => [
                 'series' => $series,
                 'labels' => $names

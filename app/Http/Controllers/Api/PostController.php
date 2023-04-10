@@ -310,7 +310,7 @@ class PostController extends Controller
     }
 
     public function barangay($id){
-        $tag = Barangay::where('id',$id)->first();
+        $tag = LocationBarangay::where('id',$id)->first();
         $data = Post::where('barangay_id',$id)->whereDate('created_at', Carbon::yesterday())->orderBy('created_at','DESC')->get();
 
         return response()->json([

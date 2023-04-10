@@ -28,6 +28,7 @@ Route::get('/lists', [App\Http\Controllers\Api\PostController::class, 'lists']);
 Route::get('/location', [App\Http\Controllers\Api\PostController::class, 'location']);
 Route::get('/notification', [App\Http\Controllers\Api\PostController::class, 'notification']);
 Route::get('/viewNoti', [App\Http\Controllers\Api\PostController::class, 'viewNoti']);
+Route::get('/stats', [App\Http\Controllers\Api\StatsController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return new UserResource($request->user());

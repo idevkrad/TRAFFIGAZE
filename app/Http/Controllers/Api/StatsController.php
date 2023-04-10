@@ -71,7 +71,7 @@ class StatsController extends Controller
                 }
             ]);
         }
-        $tags = $query->orderBy('posts_count', 'desc')->get();
+        $tags = $query->orderBy('posts_count', 'desc')->LIMIT(10)->get();
         
         if($request->type == 'yesterday'){
             return response()->json([

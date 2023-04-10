@@ -15,13 +15,12 @@ class StatsController extends Controller
         $names = [];
 
         $query = Tag::query();
-        $query->withCount('posts');
         if($request->type == 'yesterday'){
             $query->whereHas('posts',function ($query) {
                 $query->whereDate('created_at', Carbon::yesterday()); 
             });
         }
-        $tags = $query->orderBy('posts_count', 'desc')->get();
+        $tags = $query->get();
         
         if($request->type == 'yesterday'){
             return response()->json([

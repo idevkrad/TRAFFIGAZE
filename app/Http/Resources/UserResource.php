@@ -15,7 +15,7 @@ class UserResource extends JsonResource
             'avatar' => 'https://traffigaze.info/images/avatars/'.$this->avatar,
             'role' => ($this->is_admin) ? 'Administrator' : 'User',
             'is_active' => $this->is_active,
-            'name' => $this->name,
+            'name' => ucwords(strtolower($this->name)),
             'mobile' => $this->mobile,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at

@@ -15,6 +15,7 @@ use App\Http\Resources\PostResource;
 use Illuminate\Support\Facades\Validator;
 use App\Events\PostBroadcast;
 use App\Events\MapBroadcast;
+use Carbon\Carbon;
 use App\Http\Resources\LikeResource;
 use App\Http\Resources\ReportResource;
 use App\Http\Resources\CommentResource;
@@ -292,6 +293,20 @@ class PostController extends Controller
                 $data = PostReport::where('post_id',$post_id)->update(['seened_by' => 1]);
             break;
         }
+    }
+
+    public function history($id){
+        $tag = Tag::where('id',$id)->first();
+        $data = Post::where('tag_id',$id)->whereDate('created_at', Carbon::yesterday())->orderBy('created_at','DESC')->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'List fetched',
+            'data' => [
+                'tag' => $tag,
+                'lists' => $data
+            ]
+        ], 200);
     }
 
 }

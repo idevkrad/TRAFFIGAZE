@@ -15,7 +15,7 @@ class LikeNotiResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'avatar' => 'https://traffigaze.rjumli.me/images/avatars/'.$this->user->avatar,
+            'avatar' => 'https://traffigaze.info/images/avatars/'.$this->user->avatar,
             'name' => $this->user->name,
             'text' => 'likes your post.',
             'type' => 'like',

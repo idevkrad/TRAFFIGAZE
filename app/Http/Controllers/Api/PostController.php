@@ -33,6 +33,8 @@ class PostController extends Controller
                 $query->where('barangay_id',$barangay);
             })
             ->orderBy('created_at','DESC')->get();
+        }else if($request->type == 'profile'){
+            $data = Post::where('user_id',$request->id)->orderBy('created_at','DESC')->get();
         }else if($request->type == 'latest'){
             $data = Post::whereDate('created_at',now())->orderBy('created_at','DESC')->get();
         }else if($request->type == 'all'){

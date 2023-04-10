@@ -17,7 +17,7 @@ class ProfileResource extends JsonResource
         return [
             'id' => $this->id,
             'email' => $this->email,
-            'avatar' => 'https://traffigaze.rjumli.me/images/avatars/'.$this->avatar,
+            'avatar' => 'https://traffigaze.info/images/avatars/'.$this->avatar,
             'name' => $this->name,
         ];
     }

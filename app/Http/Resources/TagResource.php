@@ -17,7 +17,7 @@ class TagResource extends JsonResource
         return[
             'id' => $this->id,
             'name' => $this->name,
-            'icon' => 'https://traffigaze.rjumli.me/images/icons/'.$this->icon
+            'icon' => 'https://traffigaze.info/images/icons/'.$this->icon
         ];
     }
 }

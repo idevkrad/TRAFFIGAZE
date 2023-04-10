@@ -126,4 +126,14 @@ class AuthController extends Controller
     public function logoutUser(Request $request){
         return response()->json(['status' => 200]);
     }
+
+    public function index(){
+        $data = User::where('is_admin',0)->paginate(10);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'List fetched',
+            'data' => UserResource::collection($data)
+        ], 200);
+    }
 }

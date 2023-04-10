@@ -11,7 +11,7 @@ class StatsController extends Controller
 {
     public function index(Request $request){
 
-        $data = Post::withCount('tag')->orderBy('tag_count', 'desc')->get();
+        $data = Tag::withCount('posts')->orderBy('posts_count', 'desc')->get();
 
         return response()->json([
             'status' => true,

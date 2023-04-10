@@ -11,6 +11,6 @@ class LocationBarangay extends Model
 
     public function posts()
     {
-        return $this->hasMany('App\Models\Post', 'tag_id');
+        return $this->hasMany('App\Models\Post', 'barangay_id');
     }
 }

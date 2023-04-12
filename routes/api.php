@@ -33,6 +33,8 @@ Route::get('/barangay', [App\Http\Controllers\Api\StatsController::class, 'baran
 Route::get('/tag/{id}', [App\Http\Controllers\Api\PostController::class, 'tag']);
 Route::get('/barangay/{id}', [App\Http\Controllers\Api\PostController::class, 'barangay']);
 
+Route::get('/users', [App\Http\Controllers\Api\UserController::class, 'index']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return new UserResource($request->user());
 });

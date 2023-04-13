@@ -44,7 +44,7 @@ class UserController extends Controller
                 'data' => [PostReport::count()]
             ];
         $data = [
-            'users' => User::count(),
+            'users' => User::where('is_admin',0)->count(),
             'posts' => Post::count(),
             'series' => $series
         ];

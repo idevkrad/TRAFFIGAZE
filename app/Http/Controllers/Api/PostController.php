@@ -192,8 +192,8 @@ class PostController extends Controller
                     broadcast(new PostBroadcast($data2,$message));
                 }
 
-                $message = 'report';
-                broadcast(new PostBroadcast(new ReportResource($data),$message));
+                // $message = 'report';
+                // broadcast(new PostBroadcast(new ReportResource($data),$message));
             }
         }else{
             $unreported = PostReport::where('user_id',$user_id)->where('post_id',$post_id)->first();

@@ -14,4 +14,9 @@ class Tag extends Model
     {
         return $this->hasMany('App\Models\Post', 'tag_id');
     }
+
+    function likes()
+    {
+        return $this->hasManyThrough('App\Models\PostLike', 'App\Models\Post');
+    }
 }

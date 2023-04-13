@@ -54,4 +54,14 @@ class UserController extends Controller
             'data' => $data
         ], 200);
     }
+
+    public function tags(){
+        $tags = Tag::withCount(['posts', 'likes']);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'List fetched',
+            'data' => $tags
+        ], 200);
+    }
 }

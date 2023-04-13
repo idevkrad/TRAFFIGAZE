@@ -35,6 +35,7 @@ Route::get('/barangay/{id}', [App\Http\Controllers\Api\PostController::class, 'b
 
 Route::get('/users', [App\Http\Controllers\Api\UserController::class, 'index']);
 Route::get('/admin', [App\Http\Controllers\Api\UserController::class, 'admin']);
+Route::get('/tags', [App\Http\Controllers\Api\UserController::class, 'tags']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return new UserResource($request->user());

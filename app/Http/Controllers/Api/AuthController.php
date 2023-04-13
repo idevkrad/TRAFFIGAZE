@@ -136,4 +136,58 @@ class AuthController extends Controller
             'data' => UserResource::collection($data)
         ], 200);
     }
+
+    public function update(Request $request){
+        try {
+            //Validated
+            $validateUser = Validator::make($request->all(), 
+            [
+                'id' => 'required',
+                'avatar' => 'required|image64:jpeg,jpg,png'
+            ]);
+
+            if($validateUser->fails()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'validation error',
+                    'errors' => $validateUser->errors()
+                ], 401);
+            }
+
+            $data = User::where('id',$request->id)->first();
+
+            if($request->avatar){
+                $dd = $request->avatar;
+                $img = explode(',', $dd);
+                $ini =substr($img[0], 11);
+                $type = explode(';', $ini);
+                if($type[0] == 'png'){
+                    $image = str_replace('data:image/png;base64,', '', $dd);
+                }else{
+                    $image = str_replace('data:image/jpeg;base64,', '', $dd);
+                }
+                $image = str_replace(' ', '+', $image);
+                $imageName =  $data->id.'.'.$type[0];
+                
+                if(\File::put(public_path('images/avatars'). '/' . $imageName, base64_decode($image))){
+                    $data->avatar = $imageName;
+                    $data->save();
+                }
+            }
+
+            $data = User::where('id',$request->id)->first();
+            
+            return response()->json([
+                'status' => true,
+                'message' => 'User Updated Successfully',
+                'data' => new UserResource($data)
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
 }

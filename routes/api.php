@@ -17,6 +17,7 @@ use App\Http\Resources\UserResource;
 Route::post('/register', [App\Http\Controllers\Api\AuthController::class, 'createUser']);
 Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'loginUser']);
 Route::post('/logout', [App\Http\Controllers\Api\AuthController::class, 'logoutUser']);
+Route::get('/update', [App\Http\Controllers\Api\AuthController::class, 'update']);
 
 Route::get('/posts', [App\Http\Controllers\Api\PostController::class, 'index']);
 Route::post('/create', [App\Http\Controllers\Api\PostController::class, 'store']);

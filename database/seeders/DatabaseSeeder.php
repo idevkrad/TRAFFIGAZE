@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         \DB::table('users')->insert([
             'name' => 'Traffigaze Admin',
             'email' => 'admin@traffigaze.com',
-            'password' => bcrypt('123456789'),
+            'password' => bcrypt('traffigaze'),
             'mobile' => '09123456789',
             'avatar' => 'admin.png',
             'is_admin' => 1,

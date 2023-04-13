@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Tag;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\PostLike;

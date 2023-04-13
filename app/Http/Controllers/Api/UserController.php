@@ -9,8 +9,8 @@ use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
-    public function index(){
-        $data =  User::where('is_admin',0)->paginate(10);
+    public function index(Request $request){
+        $data =  User::where('is_admin',0)->paginate($request->count);
 
         return response()->json([
             'status' => true,

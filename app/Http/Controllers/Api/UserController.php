@@ -22,4 +22,33 @@ class UserController extends Controller
             'data' => UserResource::collection($data)
         ], 200);
     }
+
+    public function admin(Request $request){
+        $series[] = 
+            [
+                'name' => 'Posts',
+                'data' => [Post::count()]
+            ];
+            $series[] = 
+            [
+                'name' => 'Posts',
+                'data' => [Post::count()]
+            ];
+            $series[] = 
+            [
+                'name' => 'Posts',
+                'data' => [Post::count()]
+            ];
+        $data = [
+            'users' => User::count(),
+            'posts' => Post::count(),
+            'series' => $series
+        ];
+
+        return response()->json([
+            'status' => true,
+            'message' => 'List fetched',
+            'data' => $data
+        ], 200);
+    }
 }

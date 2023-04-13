@@ -57,7 +57,7 @@ class UserController extends Controller
     }
 
     public function tags(){
-        $tags = Tag::withCount(['posts', 'likes'])->get();
+        $tags = Tag::withCount(['posts', 'likes', 'reports'])->get();
 
         return response()->json([
             'status' => true,

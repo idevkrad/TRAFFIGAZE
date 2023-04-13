@@ -19,4 +19,9 @@ class Tag extends Model
     {
         return $this->hasManyThrough('App\Models\PostLike', 'App\Models\Post');
     }
+
+    function reports()
+    {
+        return $this->hasManyThrough('App\Models\PostReport', 'App\Models\Post');
+    }
 }

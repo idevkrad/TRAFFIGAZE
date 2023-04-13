@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use App\Models\Post;
+use App\Models\PostLike;
+use App\Models\PostReport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
@@ -32,13 +34,13 @@ class UserController extends Controller
             ];
             $series[] = 
             [
-                'name' => 'Posts',
-                'data' => [Post::count()]
+                'name' => 'Likes',
+                'data' => [PostLike::count()]
             ];
             $series[] = 
             [
-                'name' => 'Posts',
-                'data' => [Post::count()]
+                'name' => 'Reports',
+                'data' => [PostReport::count()]
             ];
         $data = [
             'users' => User::count(),

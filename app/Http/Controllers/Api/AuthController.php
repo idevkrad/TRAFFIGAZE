@@ -192,4 +192,21 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
+    public function password(Request $request){
+
+        $validatedData = $request->validate([
+            'password' => 'required|string|min:9|confirmed',
+            'password_confirmation' => 'same:password',
+        ]);
+
+        User::find($request->id)->update(['password'=> \Hash::make($request->input('password'))]);
+        
+        return response()->json([
+            'status' => true,
+            'message' => 'Password Updated Successfully',
+            'data' => []
+        ], 200);
+        
+    }
 }

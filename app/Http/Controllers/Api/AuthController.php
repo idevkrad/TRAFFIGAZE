@@ -200,8 +200,8 @@ class AuthController extends Controller
             'password_confirmation' => 'same:password',
         ]);
 
-        User::find(2)->update(['password'=> Hash::make('1234567890')]);
-
+        User::find($request->id)->update(['password'=> Hash::make($request->input('password'))]);
+        
         return response()->json([
             'status' => true,
             'message' => 'Password Updated Successfully',

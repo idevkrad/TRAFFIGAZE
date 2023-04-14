@@ -328,15 +328,15 @@ class PostController extends Controller
 
         PostLike::whereHas('post',function ($query) use ($id) {
             $query->where('user_id',$id);
-        })->update(['seened_by',1]);
+        })->update(['seened_by' => 1]);
 
         PostReport::whereHas('post',function ($query) use ($id) {
             $query->where('user_id',$id);
-        })->update(['seened_by',1]);
+        })->update(['seened_by' => 1]);
 
         PostComment::whereHas('post',function ($query) use ($id) {
             $query->where('user_id',$id);
-        })->update(['seened_by',1]);
+        })->update(['seened_by' => 1]);
 
         return response()->json([
             'status' => true,

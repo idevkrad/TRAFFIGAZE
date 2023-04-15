@@ -23,7 +23,7 @@ class UserController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'List fetched',
-            'data' => UserResource::collection($data)
+            'data' => $data
         ], 200);
     }
 

@@ -36,9 +36,14 @@ Route::get('/tag/{id}', [App\Http\Controllers\Api\PostController::class, 'tag'])
 Route::get('/barangay/{id}', [App\Http\Controllers\Api\PostController::class, 'barangay']);
 Route::get('/markall', [App\Http\Controllers\Api\PostController::class, 'markall']);
 
-Route::get('/users', [App\Http\Controllers\Api\UserController::class, 'index']);
 Route::get('/admin', [App\Http\Controllers\Api\UserController::class, 'admin']);
 Route::get('/tags', [App\Http\Controllers\Api\UserController::class, 'tags']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return new UserResource($request->user());
+});
+
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/users', [App\Http\Controllers\Api\UserController::class, 'index']);
 });

@@ -17,27 +17,7 @@ use App\Http\Resources\UserResource;
 Route::post('/register', [App\Http\Controllers\Api\AuthController::class, 'createUser']);
 Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'loginUser']);
 Route::post('/logout', [App\Http\Controllers\Api\AuthController::class, 'logoutUser']);
-Route::post('/update', [App\Http\Controllers\Api\AuthController::class, 'update']);
-Route::post('/password', [App\Http\Controllers\Api\AuthController::class, 'password']);
 
-Route::get('/posts', [App\Http\Controllers\Api\PostController::class, 'index']);
-Route::post('/create', [App\Http\Controllers\Api\PostController::class, 'store']);
-Route::post('/like', [App\Http\Controllers\Api\PostController::class, 'like']);
-Route::post('/comment', [App\Http\Controllers\Api\PostController::class, 'comment']);
-Route::post('/report', [App\Http\Controllers\Api\PostController::class, 'report']);
-Route::get('/view/{id}', [App\Http\Controllers\Api\PostController::class, 'view']);
-Route::get('/lists', [App\Http\Controllers\Api\PostController::class, 'lists']);
-Route::get('/location', [App\Http\Controllers\Api\PostController::class, 'location']);
-Route::get('/notification', [App\Http\Controllers\Api\PostController::class, 'notification']);
-Route::get('/viewNoti', [App\Http\Controllers\Api\PostController::class, 'viewNoti']);
-Route::get('/tag', [App\Http\Controllers\Api\StatsController::class, 'tag']);
-Route::get('/barangay', [App\Http\Controllers\Api\StatsController::class, 'barangay']);
-Route::get('/tag/{id}', [App\Http\Controllers\Api\PostController::class, 'tag']);
-Route::get('/barangay/{id}', [App\Http\Controllers\Api\PostController::class, 'barangay']);
-Route::get('/markall', [App\Http\Controllers\Api\PostController::class, 'markall']);
-
-Route::get('/admin', [App\Http\Controllers\Api\UserController::class, 'admin']);
-Route::get('/tags', [App\Http\Controllers\Api\UserController::class, 'tags']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return new UserResource($request->user());
@@ -45,5 +25,25 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/users', [App\Http\Controllers\Api\UserController::class, 'index']);
-});
+    Route::post('/update', [App\Http\Controllers\Api\AuthController::class, 'update']);
+    Route::post('/password', [App\Http\Controllers\Api\AuthController::class, 'password']);
+    
+    Route::get('/posts', [App\Http\Controllers\Api\PostController::class, 'index']);
+    Route::post('/create', [App\Http\Controllers\Api\PostController::class, 'store']);
+    Route::post('/like', [App\Http\Controllers\Api\PostController::class, 'like']);
+    Route::post('/comment', [App\Http\Controllers\Api\PostController::class, 'comment']);
+    Route::post('/report', [App\Http\Controllers\Api\PostController::class, 'report']);
+    Route::get('/view/{id}', [App\Http\Controllers\Api\PostController::class, 'view']);
+    Route::get('/lists', [App\Http\Controllers\Api\PostController::class, 'lists']);
+    Route::get('/location', [App\Http\Controllers\Api\PostController::class, 'location']);
+    Route::get('/notification', [App\Http\Controllers\Api\PostController::class, 'notification']);
+    Route::get('/viewNoti', [App\Http\Controllers\Api\PostController::class, 'viewNoti']);
+    Route::get('/tag', [App\Http\Controllers\Api\StatsController::class, 'tag']);
+    Route::get('/barangay', [App\Http\Controllers\Api\StatsController::class, 'barangay']);
+    Route::get('/tag/{id}', [App\Http\Controllers\Api\PostController::class, 'tag']);
+    Route::get('/barangay/{id}', [App\Http\Controllers\Api\PostController::class, 'barangay']);
+    Route::get('/markall', [App\Http\Controllers\Api\PostController::class, 'markall']);
+    
+    Route::get('/admin', [App\Http\Controllers\Api\UserController::class, 'admin']);
+    Route::get('/tags', [App\Http\Controllers\Api\UserController::class, 'tags']);
+})

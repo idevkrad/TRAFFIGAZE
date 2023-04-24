@@ -46,4 +46,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     
     Route::get('/admin', [App\Http\Controllers\Api\UserController::class, 'admin']);
     Route::get('/tags', [App\Http\Controllers\Api\UserController::class, 'tags']);
+    Route::get('/users', [App\Http\Controllers\Api\UserController::class, 'index']);
 });

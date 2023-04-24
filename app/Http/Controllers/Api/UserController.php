@@ -18,7 +18,7 @@ class UserController extends Controller
         ->when($request->keyword, function ($query, $keyword) {
             $query->where('name','LIKE', "%{$keyword}%");
         })
-        ->paginate($request->count);
+        ->get();
 
         return response()->json([
             'status' => true,
